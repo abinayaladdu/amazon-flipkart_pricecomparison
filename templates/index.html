@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>PRICE COMPARE</title>
+  <body style="background-color:#81c8dd">
+        <div class="navbar-menu-wrapper d-flex align-items-center flex-grow-1">
+          <h2 class="mb-0 font-weight-medium d-none d-lg-flex" >Mobile Price Comparison In Amazon & Flipkart</h2>
+        </div>
+      </nav>
+             
+        <!-- partial -->
+        <div class="main-panel">
+          <div class="content-wrapper">
+            <div class="row purchace-popup">
+              <div class="col-md-6 grid-margin stretch-card">
+            <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Flipkart</h4>
+                    <form class="forms-sample" action="/flipkart" method="post" enctype="multipart/form-data">
+
+                      <div class="form-group">
+                        <label for="exampleInputConfirmPassword1">Enter mobile Name : </label>
+                        <input type="text" name = "flipkart" class="form-control" id="exampleInputConfirmPassword1" >
+                      </div>
+                      <button type="submit" class="btn btn-dark btn-fw">Click here</button>
+                    </form>
+                  </div>
+                </div>
+        </div>
+        <div class="col-md-6 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Amazon</h4>
+              <form class="forms-sample" action="/amazon" method="post" enctype="multipart/form-data">
+
+                <div class="form-group">
+                  <label for="exampleInputConfirmPassword1">Enter mobile Name : </label>
+                  <input type="text" name = "product" class="form-control" id="exampleInputConfirmPassword1">
+                </div>
+                <button type="submit" class="btn btn-dark btn-fw">Click here</button>
+
+              </form>
+            </div>
+
+          </div>
+        </div>
+        <div class="card-body">
+          <h4 class="card-title">Compare Price</h4>
+          <form class="forms-sample" action="/compare" method="post" enctype="multipart/form-data">
+
+            <div class="form-group">
+              <label for="exampleInputConfirmPassword1">For comparing the price : </label>
+              <input type="text" name = "product" class="form-control" id="exampleInputConfirmPassword1" >
+            </div>
+            <button type="submit" class="btn btn-dark btn-fw">Click here</button>
+          </form>
+        </div>
+            </div>
+
+            {% if res_amazon %}
+            <div class = "col-lg-12 grid-margin stretch-card">
+              <div class="card">
+               <div class="card-body">
+                        <h3 class="card-title"> Mobiles in Amazon</h3>
+                        <table class="table table-striped">
+                          <thead>
+                            <tr>
+                              <th> Mobile Name </th>
+                              <th> Color </th>
+                              <th> RAM </th>
+                              <th> storage </th>
+                              <th>Mobile Price </th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                           {% for result in res_amazon %}
+
+                            <tr>
+                              {% for col,res  in zip(column_names, result) %}
+                              <td>{{res}}</td>
+
+                          {% endfor %}
+                          </tr>
+                        {% endfor %}
+
+                        </tbody>
+                      </table>
+                    </div>
+              </div>
+            </div>
+
+            {% endif %}
+          {% if res_flipkart or message %}
+            <div class = "col-lg-12 grid-margin stretch-card">
+              <div class="card">
+               <div class="card-body">
+                        <h4 class="card-title"> Mobiles in Flipkart</h4>
+                        <table class="table table-striped">
+                          <thead>
+                            <tr>
+                              <th> Mobile Name </th>
+                              <th> Color </th>
+                              <th> RAM </th>
+                              <th> storage </th>
+                              <th> Mobile Price </th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                           {% for result in res_flipkart %}
+
+                            <tr>
+                              {% for col,res  in zip(column_names, result) %}
+                              <td>{{res}}</td>
+
+                          {% endfor %}
+                          </tr>
+                        {% endfor %}
+
+                        </tbody>
+                      </table>
+                    </div>
+              </div>
+            </div>
+
+            {% endif %}
+            
+            {% if res_compare %}
+            <div class = "col-lg-12 grid-margin stretch-card">
+              <div class="card">
+               <div class="card-body">
+                        <h3 class="card-title"> Comparing result</h3>
+                        <table class="table table-striped">
+                          <thead>
+                            <tr>
+                              <th> Mobile Name </th>
+                              <th> Color </th>
+                              <th> RAM </th>
+                              <th> storage </th>
+                              <th>Amazon Price </th>
+                              <th>Flipkart price</th>
+                              <th>Difference in price</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                           {% for result in res_compare %}
+
+                            <tr>
+                              {% for col,res  in zip(column_names, result) %}
+                              <td>{{res}}</td>
+
+                          {% endfor %}
+                          </tr>
+                        {% endfor %}
+
+                        </tbody>
+                      </table>
+                    </div>
+              </div>
+            </div>
+
+            {% endif %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- partial -->
+        </div>
+        <!-- main-panel ends -->
+      </div>
+      <!-- page-body-wrapper ends -->
+    </div>
+  </body>
+</html>
